@@ -42,6 +42,7 @@ public struct BotEmbed: Codable {
         case color
         case fields
         case footer
+        case image
     }
 
     // Always rich as that's the only type supported
@@ -54,6 +55,7 @@ public struct BotEmbed: Codable {
     fileprivate(set) var timestamp: Date?
     fileprivate(set) var color: Int?
     fileprivate(set) var footer: EmbedFooter?
+    fileprivate(set) var image: EmbedMedia?
     private let fields: [Field]?
 
     public init(fields: [Field]? = nil) {
@@ -102,5 +104,19 @@ public extension BotEmbed {
         var embed = self
         embed.color = color
         return embed
+    }
+  
+    func image(_ image: EmbedMedia?) -> Self {
+        var embed = self
+        embed.image = image
+        return embed
+    }
+
+    func image(url: String, proxyURL: String? = nil, height: Int? = nil, width: Int? = nil) -> Self {
+        return image(.init(url: url, proxy_url: proxyURL, height: height, width: width))
+    }
+
+    func image(_ url: String) -> Self {
+        return image(url: url)
     }
 }

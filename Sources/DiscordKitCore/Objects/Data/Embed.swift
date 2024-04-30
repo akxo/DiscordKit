@@ -67,6 +67,13 @@ public struct EmbedFooter: Codable, Equatable, Hashable {
 }
 
 public struct EmbedMedia: Codable, Equatable, Hashable {
+  public init(url: String, proxy_url: String? = nil, height: Int? = nil, width: Int? = nil) {
+      self.url = url
+      self.proxy_url = proxy_url
+      self.height = height
+      self.width = width
+  }
+  
     public let url: String
     public let proxy_url: String?
     public let height: Int?
