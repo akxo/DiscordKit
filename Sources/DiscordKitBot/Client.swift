@@ -182,3 +182,9 @@ public extension Client {
         }
     }
 }
+
+public extension Client {
+  func sendImage(url: String, to channelId: String) async throws {
+    _ = try? await rest.createChannelMsg(message: .init(content: nil, embeds: [.init(image: .init(url: url))]), id: channelId)
+  }
+}
