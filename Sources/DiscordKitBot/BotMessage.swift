@@ -38,3 +38,9 @@ public extension BotMessage {
         )
     }
 }
+
+public extension BotMessage {
+    func react(_ emoji: String) async throws {
+      try await rest!.createReaction(channelID, id, emoji)
+    }
+}
